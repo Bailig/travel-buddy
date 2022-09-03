@@ -109,6 +109,7 @@ module.exports = {
       rules: {
         "import/no-extraneous-dependencies": "off",
         "import/no-default-export": "off",
+        "global-require": "off",
       },
     },
   ],
