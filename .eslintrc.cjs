@@ -53,16 +53,8 @@ module.exports = {
     "react/react-in-jsx-scope": "off",
     "react/destructuring-assignment": "off",
     "react/jsx-props-no-spreading": "off",
+    "react/no-array-index-key": "off",
     "unicorn/no-useless-undefined": "off",
-    "unicorn/filename-case": [
-      "error",
-      {
-        cases: {
-          camelCase: true,
-          pascalCase: true,
-        },
-      },
-    ],
     "unicorn/prevent-abbreviations": [
       "error",
       {
@@ -78,6 +70,9 @@ module.exports = {
           },
           ref: {
             reference: false,
+          },
+          params: {
+            parameters: false,
           },
         },
       },

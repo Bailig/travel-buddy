@@ -11,14 +11,19 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
+    "@react-hookz/web": "^15.1.0",
+    "@tanstack/react-query": "^4.2.3",
     "formik": "^2.2.9",
     "react": "^18.2.0",
+    "react-datepicker": "^4.8.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
-    "react-router-dom": "6"
+    "react-router-dom": "6",
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@types/react": "^18.0.17",
+    "@types/react-datepicker": "^4.4.2",
     "@types/react-dom": "^18.0.6",
     "@typescript-eslint/eslint-plugin": "^5.30.7",
     "@typescript-eslint/parser": "^5.30.7",

@@ -2,9 +2,9 @@ import type { FC } from "react";
 import React from "react";
 import { HashRouter, Route, Routes } from "react-router-dom";
 
-const App = React.lazy(() => import("./App"));
-const Home = React.lazy(() => import("./Home"));
-const Result = React.lazy(() => import("./Result"));
+const App = React.lazy(() => import("./app"));
+const Home = React.lazy(() => import("./home"));
+const Result = React.lazy(() => import("./result"));
 
 const Routing: FC = () => {
   return (
