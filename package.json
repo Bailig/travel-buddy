@@ -8,6 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint --ext '.js,.jsx,.ts,.tsx' --fix .",
+    "cypress:open": "cypress open",
     "deploy": "VITE_BUILD_VERSION=$(git rev-parse --short HEAD) pnpm build && gh-pages -d dist"
   },
   "dependencies": {
@@ -35,6 +36,7 @@
     "eslint": "^7.32.0 || ^8.2.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-import": "^2.25.3",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-prettier": "^4.2.1",

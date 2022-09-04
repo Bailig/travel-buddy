@@ -10,6 +10,7 @@ module.exports = {
     "plugin:promise/recommended",
     "plugin:unicorn/recommended",
     "plugin:react-hooks/recommended",
+    "plugin:cypress/recommended",
     "airbnb",
     "plugin:prettier/recommended",
   ],
@@ -29,7 +30,7 @@ module.exports = {
       },
     },
   },
-  ignorePatterns: ["vite-env.d.ts"],
+  ignorePatterns: ["node_modules", "vite-env.d.ts"],
   rules: {
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
