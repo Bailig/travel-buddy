@@ -54,6 +54,7 @@ module.exports = {
     "react/destructuring-assignment": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "off",
+    "react/prop-types": "off",
     "unicorn/no-useless-undefined": "off",
     "unicorn/prevent-abbreviations": [
       "error",

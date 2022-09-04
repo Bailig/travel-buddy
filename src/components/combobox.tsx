@@ -40,7 +40,7 @@ export const Combobox: FC<ComboboxProps> = (props) => {
         <ComboboxBase.Input
           {...inputProps}
           ref={inputRef}
-          className="w-full rounded-lg bg-gray-200 py-2 px-4"
+          className="input"
           onChange={(event) => onInputChange(event.target.value)}
         />
         <Transition

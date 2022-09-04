@@ -1,6 +1,14 @@
-import { Suspense } from "react";
-import { FaSpinner } from "react-icons/fa";
+import { FC, Suspense } from "react";
+import { ErrorBoundary, FallbackProps } from "react-error-boundary";
+import { FaExclamationTriangle, FaSpinner } from "react-icons/fa";
 import { Link, Outlet } from "react-router-dom";
+
+const Error: FC<FallbackProps> = () => (
+  <div className="grid h-screen w-full place-content-center place-items-center gap-2">
+    <FaExclamationTriangle className="text-6xl text-white" />
+    <div className="text-white">Oops! Something went wrong!</div>
+  </div>
+);
 
 const App = () => (
   <div aria-label="App" className="min-h-screen bg-primary py-14">
@@ -9,15 +17,18 @@ const App = () => (
         Travel Buddy
       </Link>
     </header>
-    <Suspense
-      fallback={
-        <div className="grid h-screen w-screen place-items-center">
-          <FaSpinner className="animate-spin text-white" />
-        </div>
-      }
-    >
-      <Outlet />
-    </Suspense>
+
+    <ErrorBoundary FallbackComponent={Error}>
+      <Suspense
+        fallback={
+          <div className="grid h-screen w-full place-items-center">
+            <FaSpinner className="animate-spin text-2xl text-white" />
+          </div>
+        }
+      >
+        <Outlet />
+      </Suspense>
+    </ErrorBoundary>
   </div>
 );
 
