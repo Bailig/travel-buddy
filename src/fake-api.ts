@@ -26,7 +26,7 @@ const wait = () =>
   new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve();
-    }, 300);
+    }, 1000);
   });
 
 export const fetchCities = async (keyword: string) => {
@@ -43,10 +43,68 @@ export const fetchCities = async (keyword: string) => {
   ).map((city) => city[0]);
 };
 
+type Coordinates = [number, number];
+const haversineDistance = (
+  [latitude1, longitude1]: Coordinates,
+  [latitude2, longitude2]: Coordinates,
+) => {
+  const toRadian = (angle: number) => (Math.PI / 180) * angle;
+  const distance = (a: number, b: number) => (Math.PI / 180) * (a - b);
+  const RADIUS_OF_EARTH_IN_KM = 6371;
+
+  const distanceLatitude = distance(latitude2, latitude1);
+  const distanceLongitude = distance(longitude2, longitude1);
+
+  const latitudeRadian1 = toRadian(latitude1);
+  const latitudeRadian2 = toRadian(latitude2);
+
+  const a =
+    Math.sin(distanceLatitude / 2) ** 2 +
+    Math.sin(distanceLongitude / 2) ** 2 *
+      Math.cos(latitudeRadian1) *
+      Math.cos(latitudeRadian2);
+  const c = 2 * Math.asin(Math.sqrt(a));
+
+  return RADIUS_OF_EARTH_IN_KM * c;
+};
+
 export const calculateDistance = async (cities: string[]) => {
   console.log("fake api: calculateDistance cities:", cities);
+  await wait();
   if (cities.includes("Dijon")) {
     throw new Error("500 Server Error!");
   }
-  return 1000;
+
+  // eslint-disable-next-line unicorn/no-array-reduce
+  const cityMap = CITIES.reduce((accumulator, city) => {
+    accumulator.set(city[0], city);
+    return accumulator;
+  }, new Map<string, [string, number, number]>());
+
+  const [origin, ...destinations] = cities;
+  const distances = destinations.map((toCityName, index) => {
+    const toCity = cityMap.get(toCityName)!;
+    if (index === 0) {
+      const fromCity = cityMap.get(origin)!;
+      return {
+        fromCity: origin,
+        toCity: toCityName,
+        distance: haversineDistance(
+          [fromCity[1], fromCity[2]],
+          [toCity[1], toCity[2]],
+        ),
+      };
+    }
+    const fromCity = cityMap.get(destinations[index - 1])!;
+    return {
+      fromCity: destinations[index - 1],
+      toCity: toCityName,
+      distance: haversineDistance(
+        [fromCity[1], fromCity[2]],
+        [toCity[1], toCity[2]],
+      ),
+    };
+  });
+
+  return distances;
 };
