@@ -4,6 +4,8 @@ import ReactDOM from "react-dom/client";
 import Routing from "./containers/routing";
 import "./index.css";
 
+window.BUILD_VERSION = import.meta.env.VITE_BUILD_VERSION;
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
