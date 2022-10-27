@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "lint": "eslint --ext '.js,.jsx,.ts,.tsx' --fix .",
     "cypress:open": "cypress open",
-    "deploy": "VITE_BUILD_VERSION=$(git rev-parse --short HEAD) pnpm build && gh-pages -d dist"
+    "deploy": "VITE_VERCEL_GIT_COMMIT_SHA=$(git rev-parse HEAD) pnpm build && gh-pages -d dist"
   },
   "dependencies": {
     "@headlessui/react": "^1.6.6",
